@@ -56,20 +56,22 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		}
 
 		generateTableFromJson(json) {
-			var thead = document.querySelector('#quiz-table thead');
+			var thead = document.querySelector('#quiz-table thead tr');
 			var tbody = document.querySelector('#quiz-table tbody');
 			// generate header
-			var headerRow = json.pop();
+			var headerRow = json.shift();
 			headerRow.forEach((row) => {
-				let th = `<th>${row}</th>`;
-				thead.insertAdjacentHTML('beforeend', th);
+				if (row) {
+					let th = `<th>${row}</th>`;
+					thead.insertAdjacentHTML('beforeend', th);
+				}
 			});
 
 			// generate another rows
 			json.forEach((row) => {
 				let trTemplate = '<tr>';
-				row.forEach((cell) => {
-					trTemplate += `<td>${cell}</td>`;
+				row.forEach((cell, index) => {
+					trTemplate += `<td ${index == 0 ? "class='number'" : ""}>${cell}</td>`;
 				});
 				trTemplate += '</tr>';
 				tbody.insertAdjacentHTML('beforeend',trTemplate);
@@ -80,17 +82,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 		exportTableAsImg() {
 			var node = document.getElementById('with-table');
-
-			// domtoimage.toPng(node)
-			//     .then(function (dataUrl) {
-			//         var img = new Image();
-			//         img.src = dataUrl;
-			//         document.body.appendChild(img);
-			//     })
-			//     .catch(function (error) {
-			//         console.error('oops, something went wrong!', error);
-			//     });
-
 		    domtoimage.toBlob(document.getElementById('with-table'))
 			    .then(function (blob) {
 			        window.saveAs(blob, 'quiz.png');

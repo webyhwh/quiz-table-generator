@@ -6,6 +6,10 @@
 #drop-zone {
 	width: 300px;
 	height: 300px;
+    border: 3px dashed #e8e8e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #with-table {
@@ -16,4 +20,23 @@
     background-size: cover;
     width: 1000px;
     height: 706px;
+}
+
+#quiz-table thead th,
+#quiz-table td.number {
+    background-color: #00E640;
+}
+
+#quiz-table {
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+#quiz-table td,
+#quiz-table th {
+    padding: 10px;
+    background-color: rgba(196, 196, 196, .2);
+    border: 1px solid #c4c4c4;
 }
