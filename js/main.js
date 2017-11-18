@@ -74,6 +74,27 @@ document.addEventListener('DOMContentLoaded', (e) => {
 				trTemplate += '</tr>';
 				tbody.insertAdjacentHTML('beforeend',trTemplate);
 			});
+
+			this.exportTableAsImg();
+		}
+
+		exportTableAsImg() {
+			var node = document.getElementById('with-table');
+
+			// domtoimage.toPng(node)
+			//     .then(function (dataUrl) {
+			//         var img = new Image();
+			//         img.src = dataUrl;
+			//         document.body.appendChild(img);
+			//     })
+			//     .catch(function (error) {
+			//         console.error('oops, something went wrong!', error);
+			//     });
+
+		    domtoimage.toBlob(document.getElementById('with-table'))
+			    .then(function (blob) {
+			        window.saveAs(blob, 'quiz.png');
+			    });
 		}
 	}
 
