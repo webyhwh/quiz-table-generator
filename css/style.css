@@ -1,3 +1,7 @@
+:root {
+    --tdColor: #00E640;   
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -21,12 +25,11 @@
     background-size: cover;
     width: 1000px;
     height: 706px;
-    margin: 0 auto;
 }
 
 #quiz-table thead th,
 #quiz-table td.number {
-    background-color: #00E640;
+    background-color: var(--tdColor);
 }
 
 #quiz-table {

@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			this.Id = zoneId;
 			this.Control = document.getElementById(this.Id);
 			this.bindEvents();
+			this.changeTableColor();
 			document.getElementById('with-table').style.display = 'none';
 			document.getElementById('drop-zone').style.display = '';
 		}
@@ -84,10 +85,20 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 		exportTableAsImg() {
 			var node = document.getElementById('with-table');
-		    domtoimage.toBlob(document.getElementById('with-table'))
+		    domtoimage.toBlob(document.getElementById('with-table'), {
+		    	width: 1000,
+		    	height: 706
+		    })
 			    .then(function (blob) {
 			        window.saveAs(blob, 'quiz.png');
 			    });
+		}
+
+		changeTableColor() {
+			document.getElementById('color-picker').addEventListener('change', (e) => {
+				var element = e.currentTarget;
+				document.documentElement.style.setProperty('--tdColor', element.value);
+			});
 		}
 	}
 
