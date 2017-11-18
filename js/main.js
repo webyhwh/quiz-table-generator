@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			this.Id = zoneId;
 			this.Control = document.getElementById(this.Id);
 			this.bindEvents();
+			document.getElementById('with-table').style.display = 'none';
+			document.getElementById('drop-zone').style.display = '';
 		}
 
 		bindEvents() {
@@ -18,24 +20,24 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			e.dataTransfer.dropEffect = 'copy';
 		}
 
-	to_json(workbook) {
-		var result = {};
-		workbook.SheetNames.forEach(function(sheetName) {
-			var roa = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {header:1});
-			if(roa.length > 0) result[sheetName] = roa;
-		});
-		return result;
-	}
+		to_json(workbook) {
+			var result = {};
+			workbook.SheetNames.forEach(function(sheetName) {
+				var roa = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {header:1});
+				if(roa.length > 0) result[sheetName] = roa;
+			});
+			return result;
+		}
 
-	choose_sheet(sheetidx) { process_wb(last_wb, sheetidx); }
-
-	process_wb(wb, sheetidx) {
-		var sheet = wb.SheetNames[sheetidx||0];
-		var json = this.to_json(wb)[sheet];
-		this.generateTableFromJson(json);
-	}
+		process_wb(wb, sheetidx) {
+			var sheet = wb.SheetNames[sheetidx||0];
+			var json = this.to_json(wb)[sheet];
+			this.generateTableFromJson(json);
+		}
 
 		handleDrop(e) {
+			document.getElementById('with-table').style.display = '';
+			document.getElementById('drop-zone').style.display = 'none';
 			e.stopPropagation();
 			e.preventDefault();
 			var files = e.dataTransfer.files;
@@ -74,7 +76,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 					trTemplate += `<td ${index == 0 ? "class='number'" : ""}>${cell}</td>`;
 				});
 				trTemplate += '</tr>';
-				tbody.insertAdjacentHTML('beforeend',trTemplate);
+				tbody.insertAdjacentHTML('beforeend', trTemplate);
 			});
 
 			this.exportTableAsImg();
