@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			this.bindEvents();
 			this.changeTableColor();
 			document.getElementById('with-table').style.display = 'none';
+			document.getElementById('settings').style.display = 'none';
 			document.getElementById('drop-zone').style.display = '';
 		}
 
@@ -13,6 +14,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			this.Control.addEventListener('dragenter', (e) => this.handleDragover(e), false);
 			this.Control.addEventListener('dragover', (e) => this.handleDragover(e), false);
 			this.Control.addEventListener('drop', (e) => this.handleDrop(e), false);
+			document.getElementById('downloadImg').addEventListener('click', (e) => {
+				this.exportTableAsImg();
+			});
 		}
 
 		handleDragover(e) {
@@ -38,6 +42,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 		handleDrop(e) {
 			document.getElementById('with-table').style.display = '';
+			document.getElementById('settings').style.display = '';
 			document.getElementById('drop-zone').style.display = 'none';
 			e.stopPropagation();
 			e.preventDefault();
