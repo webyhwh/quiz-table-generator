@@ -74,7 +74,19 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			json.forEach((row) => {
 				let trTemplate = '<tr>';
 				row.forEach((cell, index) => {
-					trTemplate += `<td ${index == 0 ? "class='number'" : ""}>${cell}</td>`;
+					let tdClass = "";
+					switch(index) {
+						case 0:
+							tdClass = "class='number'";
+							break;
+						case 1:
+							tdClass = "class='taleft'";
+							break;
+						default:
+							tdClass = "";
+							break;
+					}
+					trTemplate += `<td ${tdClass}>${cell}</td>`;
 				});
 				trTemplate += '</tr>';
 				tbody.insertAdjacentHTML('beforeend', trTemplate);
