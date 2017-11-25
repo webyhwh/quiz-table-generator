@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', (e) => {
+	var colorPicker = document.getElementById('color-picker');
+	var picker = new CP(colorPicker);
+	picker.on("change", function(color) {
+        this.target.value = '#' + color;
+        var event = new Event('change');
+        colorPicker.dispatchEvent(event);
+    });
 	class DropZone {
 		constructor(zoneId) {
 			this.Id = zoneId;
