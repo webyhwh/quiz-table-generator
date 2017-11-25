@@ -89,9 +89,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		    	width: 1000,
 		    	height: 706
 		    })
-			    .then(function (blob) {
-			        window.saveAs(blob, 'quiz.png');
-			    });
+		    .then(function (blob) {
+		        window.saveAs(blob, 'quiz.png');
+		    });
 		}
 
 		changeTableColor() {
