@@ -11,16 +11,34 @@
 	width: 300px;
 	height: 300px;
     border: 3px dashed #e8e8e8;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
     margin: 0 auto;
 }
 
 #with-table {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
     background: url(../img/background.jpg) no-repeat center center;
     background-size: cover;
     width: 1000px;
@@ -39,9 +57,18 @@
     border-collapse: collapse;
 }
 
+#quiz-table td {
+    text-align: center;
+}
+
 #quiz-table td,
 #quiz-table th {
-    padding: 10px;
+    padding: 12px;
     background-color: rgba(196, 196, 196, .2);
     border: 1px solid #c4c4c4;
+    white-space: nowrap;
+}
+
+.taleft {
+    text-align: left !important;
 }

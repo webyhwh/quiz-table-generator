@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			this.bindEvents();
 			this.changeTableColor();
 			document.getElementById('with-table').style.display = 'none';
+			document.getElementById('settings').style.display = 'none';
 			document.getElementById('drop-zone').style.display = '';
 		}
 
@@ -13,6 +14,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			this.Control.addEventListener('dragenter', (e) => this.handleDragover(e), false);
 			this.Control.addEventListener('dragover', (e) => this.handleDragover(e), false);
 			this.Control.addEventListener('drop', (e) => this.handleDrop(e), false);
+			document.getElementById('downloadImg').addEventListener('click', (e) => {
+				this.exportTableAsImg();
+			});
 		}
 
 		handleDragover(e) {
@@ -38,6 +42,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 		handleDrop(e) {
 			document.getElementById('with-table').style.display = '';
+			document.getElementById('settings').style.display = '';
 			document.getElementById('drop-zone').style.display = 'none';
 			e.stopPropagation();
 			e.preventDefault();
@@ -74,7 +79,19 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			json.forEach((row) => {
 				let trTemplate = '<tr>';
 				row.forEach((cell, index) => {
-					trTemplate += `<td ${index == 0 ? "class='number'" : ""}>${cell}</td>`;
+					let tdClass = "";
+					switch(index) {
+						case 0:
+							tdClass = "class='number'";
+							break;
+						case 1:
+							tdClass = "class='taleft'";
+							break;
+						default:
+							tdClass = "";
+							break;
+					}
+					trTemplate += `<td ${tdClass}>${cell}</td>`;
 				});
 				trTemplate += '</tr>';
 				tbody.insertAdjacentHTML('beforeend', trTemplate);
