@@ -7,13 +7,18 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			this.changeTableColor();
 			document.getElementById('with-table').style.display = 'none';
 			document.getElementById('settings').style.display = 'none';
-			document.getElementById('drop-zone').style.display = '';
+			document.getElementById('select-file').style.display = '';
 		}
 
 		bindEvents() {
 			this.Control.addEventListener('dragenter', (e) => this.handleDragover(e), false);
 			this.Control.addEventListener('dragover', (e) => this.handleDragover(e), false);
 			this.Control.addEventListener('drop', (e) => this.handleDrop(e), false);
+			document.getElementById('file').addEventListener('change', (e) => {
+				var input = e.currentTarget;
+				var files = input.files;
+				this.processFiles(files);
+			});
 			document.getElementById('downloadImg').addEventListener('click', (e) => {
 				this.exportTableAsImg();
 			});
@@ -41,12 +46,16 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		}
 
 		handleDrop(e) {
-			document.getElementById('with-table').style.display = '';
-			document.getElementById('settings').style.display = '';
-			document.getElementById('drop-zone').style.display = 'none';
 			e.stopPropagation();
 			e.preventDefault();
 			var files = e.dataTransfer.files;
+			this.processFiles(files);
+		}
+
+		processFiles(files) {
+			document.getElementById('with-table').style.display = '';
+			document.getElementById('settings').style.display = '';
+			document.getElementById('select-file').style.display = 'none';
 			Array.from(files).forEach((f) => {
 				var reader = new FileReader();
 				var name = f.name;
@@ -97,7 +106,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 				tbody.insertAdjacentHTML('beforeend', trTemplate);
 			});
 
-			this.exportTableAsImg();
+			if (json.length > 12) {
+				this.setAdditionalStyle();
+			}
 		}
 
 		exportTableAsImg() {
@@ -106,9 +117,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		    	width: 1000,
 		    	height: 706
 		    })
-			    .then(function (blob) {
-			        window.saveAs(blob, 'quiz.png');
-			    });
+			.then(function (blob) {
+				window.saveAs(blob, 'quiz.png');
+			});
 		}
 
 		changeTableColor() {
@@ -116,6 +127,11 @@ document.addEventListener('DOMContentLoaded', (e) => {
 				var element = e.currentTarget;
 				document.documentElement.style.setProperty('--tdColor', element.value);
 			});
+		}
+
+		setAdditionalStyle() {
+			document.getElementById('quiz-table').style.fontSize = '16px';
+			document.querySelectorAll('#quiz-table td').forEach(x => x.style.padding = "6px");
 		}
 	}
 

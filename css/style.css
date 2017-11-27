@@ -15,6 +15,11 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
         -ms-flex-pack: center;
@@ -55,6 +60,7 @@
     font-family: 'Roboto', sans-serif;
     border-spacing: 0;
     border-collapse: collapse;
+    width: 850px;
 }
 
 #quiz-table td {
@@ -71,4 +77,20 @@
 
 .taleft {
     text-align: left !important;
+}
+
+#select-file {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+#file {
+    margin: 20px auto;
 }
