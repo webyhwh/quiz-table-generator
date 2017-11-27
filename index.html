@@ -4,9 +4,11 @@
 	<meta charset="UTF-8">
 	<title>Quiz - Table Generator</title>
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="libs/color-picker/color-picker.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
+<<<<<<< HEAD
 	<div id="select-file">
 		<div id="drop-zone">
 			<p>Переместите свою таблицу в этот блок</p>
@@ -29,8 +31,36 @@
 		<button type="button" id="downloadImg">Скачать изображение</button>
 	</div>
 	<script src="js/main.js"></script>
+=======
+	<div id="page-wrapper">
+		<div id="drop-zone">
+			Переместите свою таблицу в этот блок...
+		</div>
+		<div id="with-table">
+			<table id="quiz-table">
+				<thead>
+					<tr></tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+		<div id="settings">
+			<h2>Настройки:</h2>
+			<div id="header-color">
+				<label for="color-picker">Цвет шапки и номера: </label>
+				<input type="color" id="color-picker" value="#00E640">
+			</div>
+			<div id="actions">
+				<button type="button" id="downloadImg">Скачать изображение</button>
+			</div>
+		</div>
+	</div>
+	<!-- SCRIPTS -->
+>>>>>>> ce3d63dccb728297255eee56ac69e99ebd7bbd42
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.11.9/xlsx.core.min.js"></script>
 	<script src="libs/dom-to-image.min.js"></script>
 	<script src="libs/FileSaver.min.js"></script>
+	<script src="libs/color-picker/color-picker.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>

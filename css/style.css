@@ -79,6 +79,7 @@
     text-align: left !important;
 }
 
+<<<<<<< HEAD
 #select-file {
     display: -webkit-box;
     display: -webkit-flex;
@@ -93,4 +94,34 @@
 
 #file {
     margin: 20px auto;
+=======
+button {
+    padding: 5px;
+    background-color: #26A65B;
+    color: #fff;
+    border: none;
+    box-shadow: 2px 2px 2px #26A65B;
+    cursor: pointer;
+}
+
+#settings {
+    border: 2px dashed #e8e8e8;
+    padding: 10px;
+}
+
+#page-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#actions {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#downloadImg {
+    margin-top: 10px;
+>>>>>>> ce3d63dccb728297255eee56ac69e99ebd7bbd42
 }

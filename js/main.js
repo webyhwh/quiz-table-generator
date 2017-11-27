@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', (e) => {
+	var colorPicker = document.getElementById('color-picker');
+	var picker = new CP(colorPicker);
+	picker.on("change", function(color) {
+        this.target.value = '#' + color;
+        var event = new Event('change');
+        colorPicker.dispatchEvent(event);
+    });
 	class DropZone {
 		constructor(zoneId) {
 			this.Id = zoneId;
@@ -117,9 +124,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		    	width: 1000,
 		    	height: 706
 		    })
+<<<<<<< HEAD
 			.then(function (blob) {
 				window.saveAs(blob, 'quiz.png');
 			});
+=======
+		    .then(function (blob) {
+		        window.saveAs(blob, 'quiz.png');
+		    });
+>>>>>>> ce3d63dccb728297255eee56ac69e99ebd7bbd42
 		}
 
 		changeTableColor() {
