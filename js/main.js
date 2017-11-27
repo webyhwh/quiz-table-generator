@@ -107,7 +107,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 							tdClass = "";
 							break;
 					}
-					trTemplate += `<td ${tdClass}>${cell}</td>`;
+					if (cell && cell.trim()) {
+						trTemplate += `<td ${tdClass}>${cell}</td>`;
+					}
 				});
 				trTemplate += '</tr>';
 				tbody.insertAdjacentHTML('beforeend', trTemplate);
@@ -124,15 +126,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		    	width: 1000,
 		    	height: 706
 		    })
-<<<<<<< HEAD
 			.then(function (blob) {
 				window.saveAs(blob, 'quiz.png');
 			});
-=======
-		    .then(function (blob) {
-		        window.saveAs(blob, 'quiz.png');
-		    });
->>>>>>> ce3d63dccb728297255eee56ac69e99ebd7bbd42
 		}
 
 		changeTableColor() {
