@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			});
 			document.getElementById('downloadImg').addEventListener('click', (e) => {
 				//this.exportTableAsImg();
-				this.exportTableAsJpg();
+				this.exportTableAsPng();
 			});
 		}
 
@@ -137,14 +137,19 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			});
 		}
 
-		exportTableAsJpg() {
+		exportTableAsPng() {
 			var node = document.getElementById('with-table');
-			domtoimage.toJpeg(node, { quality: 1 })
+			domtoimage.toPng(node)
 			.then(function (dataUrl) {
-				var link = document.createElement('a');
-				link.download = 'quiz.jpeg';
-				link.href = dataUrl;
-				link.click();
+				var img = new Image();
+				img.src = dataUrl;
+				var a  = document.createElement('a');
+				a.href = dataUrl;
+				a.download = 'quiz.png';
+				a.click();
+			})
+			.catch(function (error) {
+				console.error('oops, something went wrong!', error);
 			});
 		}
 
