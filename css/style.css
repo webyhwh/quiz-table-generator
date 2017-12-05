@@ -48,6 +48,7 @@
     background-size: cover;
     width: 1000px;
     height: 706px;
+    overflow: hidden;
 }
 
 #quiz-table thead th,

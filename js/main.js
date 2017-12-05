@@ -5,7 +5,12 @@ document.addEventListener('DOMContentLoaded', (e) => {
         this.target.value = '#' + color;
         var event = new Event('change');
         colorPicker.dispatchEvent(event);
-    });
+	});
+	document.getElementById('fontSize-picker').addEventListener('change', (e) => {
+		var fontInput = e.currentTarget;
+		var fontSize = fontInput.value;
+		document.getElementById('quiz-table').style.fontSize = `${fontSize}px`;
+	});
 	class DropZone {
 		constructor(zoneId) {
 			this.Id = zoneId;
@@ -27,7 +32,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
 				this.processFiles(files);
 			});
 			document.getElementById('downloadImg').addEventListener('click', (e) => {
-				this.exportTableAsImg();
+				//this.exportTableAsImg();
+				this.exportTableAsJpg();
 			});
 		}
 
@@ -131,6 +137,17 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			});
 		}
 
+		exportTableAsJpg() {
+			var node = document.getElementById('with-table');
+			domtoimage.toJpeg(node, { quality: 1 })
+			.then(function (dataUrl) {
+				var link = document.createElement('a');
+				link.download = 'quiz.jpeg';
+				link.href = dataUrl;
+				link.click();
+			});
+		}
+
 		changeTableColor() {
 			document.getElementById('color-picker').addEventListener('change', (e) => {
 				var element = e.currentTarget;
@@ -139,6 +156,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		}
 
 		setAdditionalStyle() {
+			document.getElementById('fontSize-picker').value = 16;
 			document.getElementById('quiz-table').style.fontSize = '16px';
 			document.querySelectorAll('#quiz-table td').forEach(x => x.style.padding = "6px");
 		}
