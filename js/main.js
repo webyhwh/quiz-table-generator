@@ -35,6 +35,16 @@ document.addEventListener('DOMContentLoaded', (e) => {
 				//this.exportTableAsImg();
 				this.exportTableAsPng();
 			});
+
+			document.querySelectorAll('#background-settings img').forEach(element => {
+				element.addEventListener('click', (e) => {
+					document.querySelectorAll('#background-settings img').forEach(element => element.classList.remove('active'));
+					var selectedBackground = e.currentTarget;
+					selectedBackground.classList.add('active');
+					let backgroundSrc = selectedBackground.getAttribute('src');
+					document.documentElement.style.setProperty('--backgroundSrc', `url(../${backgroundSrc})`);
+				});
+			})
 		}
 
 		handleDragover(e) {

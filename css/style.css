@@ -1,5 +1,6 @@
 :root {
-    --tdColor: #00E640;   
+    --tdColor: #00E640;
+    --backgroundSrc: url(../img/raiting.jpg);
 }
 
 * {
@@ -44,7 +45,9 @@
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
-    background: url(../img/background.jpg) no-repeat center center;
+            background-image: var(--backgroundSrc);
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
     width: 1000px;
     height: 706px;
@@ -109,6 +112,7 @@ button {
 #settings {
     border: 2px dashed #e8e8e8;
     padding: 10px;
+    margin-top: 10px;
 }
 
 #page-wrapper {
@@ -145,4 +149,31 @@ button {
 
 #downloadImg {
     margin-top: 10px;
+}
+
+#background-settings {
+    margin-top: 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-flow: row nowrap;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+}
+
+#background-settings img {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+
+#background-settings img:not(:last-child) {
+    margin-right: 15px;
+}
+
+#background-settings img.active {
+    border: 1px solid #26A65B;
 }
