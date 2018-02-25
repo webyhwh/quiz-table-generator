@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			var tbody = document.querySelector('#quiz-table tbody');
 			// generate header
 			var headerRow = json.shift();
-			let th = `<th>Ранк</th>`;
+			let th = `<th>Ранг</th>`;
 			thead.insertAdjacentHTML('beforeend', th);
 			headerRow.forEach((row) => {
 				if (row) {
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			// generate another rows
 			json.forEach((row) => {
 				let trTemplate = '<tr>';
-				trTemplate += `<td class='rank-selector'>Ранк</td>`;
+				trTemplate += `<td class='rank-selector'>Ранг</td>`;
 				row.forEach((cell, index) => {
 					let tdClass = "";
 					switch(index) {
