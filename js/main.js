@@ -11,15 +11,17 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		var fontSize = fontInput.value;
 		document.getElementById('quiz-table').style.fontSize = `${fontSize}px`;
 	});
+
 	class DropZone {
 		constructor(zoneId) {
 			this.Id = zoneId;
 			this.Control = document.getElementById(this.Id);
 			this.bindEvents();
 			this.changeTableColor();
-			document.getElementById('with-table').style.display = 'none';
-			document.getElementById('settings').style.display = 'none';
-			document.getElementById('select-file').style.display = '';
+			Utils.hide('with-table');
+			Utils.hide('settings');
+			Utils.show('select-file');
+			this.isRanksShowed = false;
 		}
 
 		bindEvents() {
@@ -32,7 +34,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
 				this.processFiles(files);
 			});
 			document.getElementById('downloadImg').addEventListener('click', (e) => {
-				//this.exportTableAsImg();
 				this.exportTableAsPng();
 			});
 
@@ -76,9 +77,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		}
 
 		processFiles(files) {
-			document.getElementById('with-table').style.display = '';
-			document.getElementById('settings').style.display = '';
-			document.getElementById('select-file').style.display = 'none';
+			Utils.show('with-table');
+			Utils.show('settings');
+			Utils.hide('select-file');
 			Array.from(files).forEach((f) => {
 				var reader = new FileReader();
 				var name = f.name;
@@ -100,6 +101,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			var tbody = document.querySelector('#quiz-table tbody');
 			// generate header
 			var headerRow = json.shift();
+			let th = `<th>Ранк</th>`;
+			thead.insertAdjacentHTML('beforeend', th);
 			headerRow.forEach((row) => {
 				if (row) {
 					let th = `<th>${row}</th>`;
@@ -110,6 +113,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			// generate another rows
 			json.forEach((row) => {
 				let trTemplate = '<tr>';
+				trTemplate += `<td class='rank-selector'>Ранк</td>`;
 				row.forEach((cell, index) => {
 					let tdClass = "";
 					switch(index) {
@@ -131,6 +135,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
 				tbody.insertAdjacentHTML('beforeend', trTemplate);
 			});
 
+			document.querySelectorAll('.rank-selector').forEach(x => {
+				x.addEventListener('click', (e) => this.showRankSelector(e), true);
+			});
+
 			if (json.length > 12) {
 				this.setAdditionalStyle();
 			}
@@ -149,6 +157,12 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 		exportTableAsPng() {
 			var node = document.getElementById('with-table');
+			var rankSelectors = node.querySelectorAll('.rank-selector');
+			rankSelectors.forEach(x => {
+				if (!x.classList.contains('rank-img')) {
+					x.innerHTML = '';
+				}
+			});
 			domtoimage.toPng(node)
 			.then(function (dataUrl) {
 				var img = new Image();
@@ -175,7 +189,42 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			document.getElementById('quiz-table').style.fontSize = '16px';
 			document.querySelectorAll('#quiz-table td').forEach(x => x.style.padding = "6px");
 		}
+
+		showRankSelector(e) {
+			if (!this.isRanksShowed) {
+				let targetElement = e.currentTarget;
+				let ranksElementOrig = document.getElementById('ranks');
+				let ranksElement = ranksElementOrig.cloneNode(true);
+				targetElement.appendChild(ranksElement);
+				ranksElement.style.display = 'block';
+				ranksElement.querySelectorAll('li').forEach(x => {
+					x.addEventListener('click', (e) => this.insertRank(e, targetElement), true);
+				});
+				this.isRanksShowed = true;
+			}
+		}
+
+		insertRank(e, td) {
+			let targetElement = e.currentTarget;
+			let rankImg = targetElement.querySelector('img');
+			let rankClass = rankImg.getAttribute('data-rank');
+			
+			td.innerHTML = '';
+			this.isRanksShowed = false;
+			td.classList.add('rank-img');
+			td.classList.add(`${rankClass}-img`);
+		}
 	}
 
 	var dropZone = new DropZone('drop-zone');
 });
+
+class Utils {
+	static show(id) {
+		document.getElementById(id).style.display = '';
+	}
+
+	static hide(id) {
+		document.getElementById(id).style.display = 'none';
+	}
+}

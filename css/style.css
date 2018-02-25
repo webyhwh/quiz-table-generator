@@ -177,3 +177,90 @@ button {
 #background-settings img.active {
     border: 1px solid #26A65B;
 }
+
+#ranks {
+    display: none;
+    position: absolute;
+    left: 200px;
+    top: 0;
+}
+
+#ranks img {
+    width: 50px;
+    height: 100px;
+}
+
+#ranks-list {
+    list-style: none;
+}
+
+#ranks-list li {
+    cursor: pointer;
+    margin-bottom: 10px;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+}
+
+.rank-selector {
+    cursor: pointer;
+}
+
+.rank-selector img {
+    width: 20px;
+}
+
+.rank-img {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    height: 44px;
+}
+
+.grand1-img {
+    background-image: url(../img/ranks/grand-1.png);
+}
+
+.grand2-img {
+    background-image: url(../img/ranks/grand-2.png);
+}
+
+.grand3-img {
+    background-image: url(../img/ranks/grand-3.png);
+}
+
+.master1-img {
+    background-image: url(../img/ranks/master-1.png);
+}
+
+.master2-img {
+    background-image: url(../img/ranks/master-2.png);
+}
+
+.master3-img {
+    background-image: url(../img/ranks/master-3.png);
+}
+
+.magistr-img {
+    background-size: 28px;
+    background-image: url(../img/ranks/magistr.png);
+}
+
+.keeper-img {
+    background-size: 40px;
+    background-image: url(../img/ranks/keeper.png);
+}
